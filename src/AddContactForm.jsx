@@ -32,15 +32,21 @@ const AddContactForm = () => {
                 contactNumber: number,
                 contactEmail: email
             })
-        } else {
-            db.collection("contact-collection").add({
-                contactName: name,
-                contactNumber: number,
-                contactEmail: email
-            })
-        }
 
-        navigate("/")
+            navigate("/")
+        } else {
+            if (name !== "" && number !== "" && email !== "") {
+                db.collection("contact-collection").add({
+                    contactName: name,
+                    contactNumber: number,
+                    contactEmail: email
+                })
+
+                navigate("/");
+            } else {
+                alert("Please enter the contact details")
+            }
+        }
     }
 
     function cancelContact() {
